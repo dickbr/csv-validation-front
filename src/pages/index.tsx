@@ -38,7 +38,7 @@ type ContentFileResponse = {
 
 export default function SplitScreen(): JSX.Element {
 
-  const inputFile = useRef(null)
+  const inputFile = useRef<any>(null)
   const [uploading, setUploading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [contentFileResponse, setContentFileResponse] = useState<ContentFileResponse>();
@@ -126,7 +126,7 @@ export default function SplitScreen(): JSX.Element {
     const reader = new FileReader();
     const [file] = input?.files;
 
-    reader.onloadend = async ({ target }) => {
+    reader.onloadend = async ({ target }: any) => {
       const csv = Papa.parse(target?.result, { header: false, delimiter: ';' });
       await uploadResponse.mutateAsync({ csv, name })
     };
